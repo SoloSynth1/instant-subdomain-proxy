@@ -12,25 +12,25 @@ if [[ $EUID > 0 ]]; then
   exit 1
 else
   # install nginx and stop
-apt update && apt install nginx -y && systemctl stop nginx;
+    apt update && apt install nginx -y;
 
-# install snapd and core
-apt install snapd -y && snap install core && sudo snap refresh core;
+    # install snapd and core
+    apt install snapd -y && snap install core && sudo snap refresh core;
 
-# install letsencrypt certbot : (check here for other distros : https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx)
-snap install --classic certbot;
-ln -s /snap/bin/certbot /usr/bin/certbot;
+    # install letsencrypt certbot : (check here for other distros : https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx)
+    snap install --classic certbot;
+    ln -s /snap/bin/certbot /usr/bin/certbot;
 
-# certbot
-certbot certonly --nginx -d $SUBDOMAIN;
+    # certbot
+    certbot certonly --nginx -d $SUBDOMAIN;
 
-# create nginx conf
-touch $SITE_AVAIL;
-ln -s $SITE_AVAIL $SITE_ENABLED;
-cat $DIR/reverse-proxy-template > $SITE_AVAIL;
-sed -i "s/{{subdomain}}/$SUBDOMAIN/g" $SITE_AVAIL;
-sed -i "s/{{service-uri}}/$SERVICE_URI/g" $SITE_AVAIL;
+    # create nginx conf
+    touch $SITE_AVAIL;
+    ln -s $SITE_AVAIL $SITE_ENABLED;
+    cat $DIR/reverse-proxy-template > $SITE_AVAIL;
+    sed -i "s/{{subdomain}}/$SUBDOMAIN/g" $SITE_AVAIL;
+    sed -i "s/{{service-uri}}/$SERVICE_URI/g" $SITE_AVAIL;
 
-# restart nginx
-service start nginx;
+    # restart nginx
+    systemctl reload nginx;
 fi
