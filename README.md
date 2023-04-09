@@ -2,9 +2,11 @@
 
 Automatic creation of HTTPS subdomain [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) using `nginx` and `certbot`.
 
-## Prerequisite
+## Prerequisites
 
-Debian-based systems as the script uses `apt`.
+1. A Debian-based system as the script uses `apt`.
+2. The subdomain's A/AAAA DNS record must be configured to be pointing to this machine.
+3. The machine must be able to receive the HTTP inbound message for certbot verification.
 
 ## Usage
 
