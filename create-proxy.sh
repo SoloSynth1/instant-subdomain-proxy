@@ -7,9 +7,11 @@ SERVICE_URI=$2;
 SITE_AVAIL=/etc/nginx/sites-available/$SUBDOMAIN;
 SITE_ENABLED=/etc/nginx/sites-enabled/$SUBDOMAIN;
 
-sudo su;
-
-# install nginx and stop
+if [[ $EUID > 0 ]]; then  
+  echo "Please run as root/sudo"
+  exit 1
+else
+  # install nginx and stop
 apt update && apt install nginx -y && systemctl stop nginx;
 
 # install snapd and core
@@ -31,3 +33,4 @@ certbot certonly --nginx -d $SUBDOMAIN;
 
 # restart nginx
 service start nginx;
+fi
