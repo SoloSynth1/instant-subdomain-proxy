@@ -21,15 +21,15 @@ apt install snapd && snap install core -y && sudo snap refresh core;
 snap install --classic certbot -y;
 ln -s /snap/bin/certbot /usr/bin/certbot;
 
+# certbot
+certbot certonly --nginx -d $SUBDOMAIN;
+
 # create nginx conf
 touch $SITE_AVAIL;
 ln -s $SITE_AVAIL $SITE_ENABLED;
 cat $DIR/reverse-proxy-template > $SITE_AVAIL;
 sed -i "s/{{subdomain}}/$SUBDOMAIN/g" $SITE_AVAIL;
 sed -i "s/{{service-uri}}/$SERVICE_URI/g" $SITE_AVAIL;
-
-# certbot
-certbot certonly --nginx -d $SUBDOMAIN;
 
 # restart nginx
 service start nginx;
