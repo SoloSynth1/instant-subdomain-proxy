@@ -11,7 +11,7 @@ server {
     } # managed by Certbot
     
     # HTTPS configuration
-    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/{{subdomain}}/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/{{subdomain}}/privkey.pem; # managed by Certbot

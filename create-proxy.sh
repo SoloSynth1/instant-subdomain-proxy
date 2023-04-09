@@ -15,10 +15,10 @@ else
 apt update && apt install nginx -y && systemctl stop nginx;
 
 # install snapd and core
-apt install snapd && snap install core && sudo snap refresh core;
+apt install snapd && snap install core -y && sudo snap refresh core;
 
 # install letsencrypt certbot : (check here for other distros : https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx)
-snap install --classic certbot;
+snap install --classic certbot -y;
 ln -s /snap/bin/certbot /usr/bin/certbot;
 
 # create nginx conf
