@@ -22,4 +22,4 @@ For example, let say you want to create a reverse proxy of a local service `loca
 
 ## Acknowledgement
 
-Steps inspired from [this Gist](https://gist.github.com/gmolveau/5e5b0bd2773100d85d9302d0fa96632d) written by gmolveau.
+The script was written in inspiration from [this Gist](https://gist.github.com/gmolveau/5e5b0bd2773100d85d9302d0fa96632d) written by gmolveau.
